@@ -1,0 +1,42 @@
+body{
+    background:url("http://blog.hdwallsource.com/wp-content/uploads/2016/01/train-track-wallpapers-37967-38837-hd-wallpapers.jpg");
+  }
+  .jumbotron{
+    background-color:#efffff;
+    color:black;
+    border:5px grey solid;
+  font: 2em Arial,sans-serif;
+  }
+  .ride{
+    font-size:40px;
+    color:blue;
+  }
+  
+  .panel-body{
+    border:5px grey solid;
+  }
+  .current ,.add{
+    background-color:peachpuff;
+    color:black;
+    font-size:20px;
+  }
+  #trainTable{
+    background-color:#efffff;
+    color:black;
+    font-size:20px;
+    font: bold;
+  }
+  #trainNameInput,#destinationInput,#timeInput,#frequencyInput{
+    color:black;
+    font-size:18px;
+    background-color:#efffff;
+  }
+  .form-group{
+    color: black;
+    font-size:20px;
+  }
+  .btn{
+    background-color:green;
+    font-size:20px;
+  }
+  
