@@ -1,117 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset ="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Train Schedule Application </title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" type="text/css" href="css/reset.css"> -->
+  <title>Train Scheduler</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- <link rel="stylesheet"-->
   <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
 
-     <!-- jQuery -->
-     <script
-     src="http://code.jquery.com/jquery-3.3.1.min.js"
-     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-     crossorigin="anonymous"></script>
+  <!-- jQuery -->
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-    <!-- Firebase Reference -->
-    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
- 
-    <!-- Moment.js Reference -->
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <!-- Firebase Reference -->
+  <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+
+  <!-- Moment.js Reference -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
 </head>
+
 <body>
-<!--Train tracker-->
-<div class ="container">
-<!--Jumbotron-->
-<div class ="jumbotron">
-  <h1 class="text-center">Train Scheduler</h1>
-  <h3 class="text-center ride">All aboard!</h3>
-</div>s
-<div class="row">
-    <div class="col-lg-12">
-    <!--Current Train Schedule-->
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title current"><strong>Current Train Schedule</strong></h3>
+  <!--Train tracker-->
+  <div class="container">
+    <!--Jumbotron-->
+    <div class="jumbotron">
+      <h1 class="text-center">Train Scheduler</h1>
+      <h3 class="text-center ride">All aboard!</h3>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <!--Current Train Schedule-->
+        <div class="panel panel-primary panel-transparent">
+          <div class="panel-heading">
+            <h3 class="panel-title current"><strong>Current Train Schedule</strong></h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover" id='trainTable'>
+              <thead>
+                <tr>
+                  <th>Train Name</th>
+                  <th>Destination</th>
+                  <th>Next Arrival</th>
+                  <th>Frequency(minutes)</th>
+                  <th>Minutes Away</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="panel-body">
-          <table class="table table-hover" id='trainTable'>
-            <thead>
-              <tr>
-                <th>Train Name</th>
-                <th>Destination</th>
-                <th>Next Arrival</th>
-                <th>Frequency(minutes)</th>
-                <th>Minutes Away</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-            </tbody>
-          </table>
+
+        <!-- Input Trains  -->
+        <div class="panel panel-primary panel-transparent">
+          <div class="panel-heading">
+            <h3 class="panel-title add"><strong>Add Trains</strong></h3>
+          </div>
+          <div class="panel-body">
+
+            <!-- Data Form -->
+            <form class="entryform">
+              <div class="form-group">
+                <label for="">Train Name</label>
+                <input type="text" class="form-control" id="trainNameInput">
+              </div>
+
+              <div class="form-group">
+                <label for="">Destination</label>
+                <input type="text" class="form-control" id="destinationInput">
+              </div>
+
+              <div class="form-group">
+                <label for="">First Train Time (HH:mm - ex: 03:00)</label>
+                <input type="text" class="form-control" id="timeInput">
+              </div>
+
+              <div class="form-group">
+                <label for="">Frequency(minutes)</label>
+                <input type="text" class="form-control" id="frequencyInput">
+              </div>
+
+              <button type="submit" class="btn btn-primary" id="addTrainBtn">Submit</button>
+            </form>
+
+          </div>
         </div>
+
       </div>
-
-      <!-- Add Trains  -->
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title add"><strong>Add Trains</strong></h3>
-        </div>
-        <div class="panel-body">
-
-        <!-- Entry Form -->
-        <form>
-          <div class="form-group">
-            <label for="">Train Name</label>
-            <input type="text" class="form-control" id="trainNameInput">
-          </div>
-
-          <div class="form-group">
-            <label for="">Destination</label>
-            <input type="text" class="form-control" id="destinationInput">
-          </div>
-
-          <div class="form-group">
-            <label for="">First Train Time (HH:mm - ex: 03:00)</label>
-            <input type="text" class="form-control" id="timeInput">
-          </div>
-
-          <div class="form-group">
-            <label for="">Frequency(minutes)</label>
-            <input type="text" class="form-control" id="frequencyInput">
-          </div>
-          
-          <button type="submit" class="btn btn-primary" id="addTrainBtn">Submit</button>
-        </form>
-
-        </div>
-      </div>
-
     </div>
   </div>
-</div>
 
 
-    <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script> -->
 
-     <!-- Javascript -->
-        <script src= "logic.js"  ></script>
+  <!-- Javascript -->
+  <script src="logic.js"></script>
 
 
 
 
 </body>
-</html>
 
+</html>
